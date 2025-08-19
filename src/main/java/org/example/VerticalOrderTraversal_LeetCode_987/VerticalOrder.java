@@ -1,39 +1,12 @@
-package org.example.MaximumProductSubArray;
+package org.example.VerticalOrderTraversal_LeetCode_987;
 
+import org.example.Models.BuildTree;
 import org.example.Models.TreeNode;
 import org.example.Models.pair;
 
 import java.util.*;
 
-public class BuildTree {
-
-    public static TreeNode buildTree(Integer[] arr) {
-        if (arr.length == 0 || arr[0] == null) return null;
-
-        TreeNode root = new TreeNode(arr[0]);
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
-
-        int i = 1;
-        while (!queue.isEmpty() && i < arr.length) {
-            TreeNode current = queue.poll();
-
-            // Left child
-            if (arr[i] != null) {
-                current.left = new TreeNode(arr[i]);
-                queue.offer(current.left);
-            }
-            i++;
-
-            // Right child
-            if (i < arr.length && arr[i] != null) {
-                current.right = new TreeNode(arr[i]);
-                queue.offer(current.right);
-            }
-            i++;
-        }
-        return root;
-    }
+public class VerticalOrder {
 
     public static List<List<Integer>> verticalTraversal(TreeNode root) {
         Queue<pair>q=new LinkedList<>();
@@ -77,8 +50,8 @@ public class BuildTree {
     public static void main(String[] args) {
         Integer[] input = {1,2,3,4,6,5,7};
 
-        TreeNode treeNode=BuildTree.buildTree(input);
-        List<List<Integer>>ans=BuildTree.verticalTraversal(treeNode);
+        TreeNode treeNode= BuildTree.buildTree(input);
+        List<List<Integer>>ans= VerticalOrder.verticalTraversal(treeNode);
         for(int i=0;i<ans.size();i++){
             List<Integer>anss=new ArrayList<>();
             for(int j=0;j<ans.get(i).size();j++){
