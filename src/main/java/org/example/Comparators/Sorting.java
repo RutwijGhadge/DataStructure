@@ -30,7 +30,7 @@ public class Sorting {
         int[]time={1,3,2,3,3};
         int[]profit={5,6,1,3,9};
         String[]name={"john","alice","alice","alex","anthony"};
-        int[]marks={88,92,92,70,91};
+        int[]marks={88,92,92,70,92};
         int[]id={3,1,2,5,4};
         List<pair>pairList=new ArrayList<>();
         List<student>studentList=new ArrayList<>();
@@ -43,6 +43,17 @@ public class Sorting {
         pairList.sort(Comparator.comparing(s -> s.time));
         for(int i=0;i<pairList.size();i++){
             System.out.print( pairList.get(i).time + " -> "+ pairList.get(i).profit);
+            System.out.println();
+        }
+
+        System.out.println();
+
+        studentList.sort(Comparator.comparing((student p)->p.id)
+                .thenComparing(Comparator.comparing((student p)->p.marks).reversed())
+                .thenComparing((student p)->p.name));
+
+        for(int i=0;i<studentList.size();i++){
+            System.out.print( studentList.get(i).id + " -> "+ studentList.get(i).name + "->" + studentList.get(i).marks);
             System.out.println();
         }
 
