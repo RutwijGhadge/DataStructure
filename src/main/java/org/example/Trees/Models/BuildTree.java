@@ -1,4 +1,4 @@
-package org.example.Models;
+package org.example.Trees.Models;
 
 import java.util.LinkedList;
 import java.util.Queue;

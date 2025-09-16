@@ -1,8 +1,8 @@
-package org.example.VerticalOrderTraversal_LeetCode_987;
+package org.example.Trees.VerticalOrderTraversal_LeetCode_987;
 
-import org.example.Models.BuildTree;
-import org.example.Models.TreeNode;
-import org.example.Models.pair;
+import org.example.Trees.Models.BuildTree;
+import org.example.Trees.Models.TreeNode;
+import org.example.Trees.Models.pair;
 
 import java.util.*;
 

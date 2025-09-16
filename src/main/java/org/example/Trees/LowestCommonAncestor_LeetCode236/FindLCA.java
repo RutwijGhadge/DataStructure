@@ -1,7 +1,7 @@
-package org.example.LowestCommonAncestor_LeetCode236;
+package org.example.Trees.LowestCommonAncestor_LeetCode236;
 
-import org.example.Models.BuildTree;
-import org.example.Models.TreeNode;
+import org.example.Trees.Models.BuildTree;
+import org.example.Trees.Models.TreeNode;
 
 
 public class FindLCA {

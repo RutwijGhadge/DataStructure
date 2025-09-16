@@ -1,9 +1,7 @@
-package org.example.Sum_Binary_Tree_Or_Not;
+package org.example.Trees.Sum_Binary_Tree_Or_Not;
 
-import org.example.Models.BuildTree;
-import org.example.Models.TreeNode;
-
-import java.util.logging.Level;
+import org.example.Trees.Models.BuildTree;
+import org.example.Trees.Models.TreeNode;
 
 public class SumBinaryTree {
    static boolean sum=true;

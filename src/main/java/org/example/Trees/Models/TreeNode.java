@@ -1,4 +1,4 @@
-package org.example.Models;
+package org.example.Trees.Models;
 
 public class TreeNode {
         public int val;

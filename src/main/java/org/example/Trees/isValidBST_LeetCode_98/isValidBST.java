@@ -1,7 +1,7 @@
-package org.example.isValidBST_LeetCode_98;
+package org.example.Trees.isValidBST_LeetCode_98;
 
-import org.example.Models.BuildTree;
-import org.example.Models.TreeNode;
+import org.example.Trees.Models.BuildTree;
+import org.example.Trees.Models.TreeNode;
 
 public class isValidBST {
     public static boolean checkValidBST(TreeNode root,int l,int r){

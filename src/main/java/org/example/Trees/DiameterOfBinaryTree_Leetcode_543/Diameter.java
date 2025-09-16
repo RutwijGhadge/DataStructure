@@ -1,7 +1,7 @@
-package org.example.DiameterOfBinaryTree_Leetcode_543;
+package org.example.Trees.DiameterOfBinaryTree_Leetcode_543;
 
-import org.example.Models.BuildTree;
-import org.example.Models.TreeNode;
+import org.example.Trees.Models.BuildTree;
+import org.example.Trees.Models.TreeNode;
 
 public class Diameter {
     static int diameter=-1;

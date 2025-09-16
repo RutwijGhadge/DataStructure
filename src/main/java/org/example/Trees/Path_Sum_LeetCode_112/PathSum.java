@@ -1,7 +1,7 @@
-package org.example.Path_Sum_LeetCode_112;
+package org.example.Trees.Path_Sum_LeetCode_112;
 
-import org.example.Models.BuildTree;
-import org.example.Models.TreeNode;
+import org.example.Trees.Models.BuildTree;
+import org.example.Trees.Models.TreeNode;
 
 public class PathSum {
     public int hasPathSum(TreeNode root,int TargetSum,int CurrentSum){

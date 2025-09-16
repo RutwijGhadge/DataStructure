@@ -1,7 +1,7 @@
-package org.example.isBalancedBinary_Leetcode110;
+package org.example.Trees.isBalancedBinary_Leetcode110;
 
-import org.example.Models.BuildTree;
-import org.example.Models.TreeNode;
+import org.example.Trees.Models.BuildTree;
+import org.example.Trees.Models.TreeNode;
 
 public class CheckHeightBalanced {
     static boolean isBalance=true;

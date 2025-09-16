@@ -1,7 +1,7 @@
-package org.example.SymmetricBinaryTree_LeetCode_101;
+package org.example.Trees.SymmetricBinaryTree_LeetCode_101;
 
-import org.example.Models.BuildTree;
-import org.example.Models.TreeNode;
+import org.example.Trees.Models.BuildTree;
+import org.example.Trees.Models.TreeNode;
 
 public class Symmetric {
     public String isSymmetric(TreeNode root){
