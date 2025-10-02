@@ -1,11 +1,11 @@
-package org.example.BackTracking;
+package org.example.BackTracking.Permutations;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class Permutations {
+public class UniquePermutations {
     ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
 
     public ArrayList<ArrayList<Integer>> permute(List<Integer> nums) {
@@ -45,7 +45,7 @@ public class Permutations {
 
     public static void main(String[] args) {
         List<Integer>nums=new ArrayList<>(Arrays.asList(1,1,2));
-        Permutations permutations=new Permutations();
+        UniquePermutations permutations=new UniquePermutations();
         ArrayList<ArrayList<Integer>>ans=permutations.permute(nums);
         for (List<Integer> an : ans) {
             List<Integer> temps = new ArrayList<>(an);
@@ -57,6 +57,7 @@ public class Permutations {
     }
 }
 /*
-Given an array A of size N denoting collection of numbers that might contain duplicates, return all possible unique permutations.
+Given an array A of size N denoting collection of numbers that might contain duplicates,
+return all possible unique permutations.
 NOTE: No 2 entries in the permutation sequence should be the same.
  */

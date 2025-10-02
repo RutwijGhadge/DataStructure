@@ -1,4 +1,4 @@
-package org.example.BackTracking;
+package org.example.BackTracking.Subset;
 
 import java.util.ArrayList;
 import java.util.List;
