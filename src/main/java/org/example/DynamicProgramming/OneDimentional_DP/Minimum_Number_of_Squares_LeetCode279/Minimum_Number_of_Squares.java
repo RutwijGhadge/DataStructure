@@ -1,4 +1,4 @@
-package org.example.DynamicProgramming.Minimum_Number_of_Squares_LeetCode279;
+package org.example.DynamicProgramming.OneDimentional_DP.Minimum_Number_of_Squares_LeetCode279;
 
 import java.util.Arrays;
 

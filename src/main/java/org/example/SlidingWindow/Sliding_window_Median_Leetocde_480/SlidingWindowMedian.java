@@ -1,4 +1,4 @@
-package org.example.Sliding_window_Median_Leetocde_480;
+package org.example.SlidingWindow.Sliding_window_Median_Leetocde_480;
 
 import java.util.Collections;
 import java.util.PriorityQueue;
