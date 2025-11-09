@@ -1,0 +1,113 @@
+🚀 System Design: URL Shortener
+
+Ever wondered how services like bit.ly or tinyurl work behind the scenes?
+Let’s walk through how a URL Shortener System can be designed — starting simple, and scaling it up.
+
+🎯 Problem Statement
+
+Input: A user submits a long URL
+Output: The system returns a short URL → BaseURL + shortAlias
+When someone visits the short URL, it should redirect them to the original long URL.
+
+🧩 Basic Solution (Single Machine)
+We maintain a simple database with 3 columns:
+
+Id	Alias (Short URL)	Long URL
+
+Process:
+    User enters a long URL → generate a new ID.
+    Convert that ID into a short alias using Base-62 encoding ([A-Z, a-z, 0-9]).
+    Store the mapping {Id, Alias, LongURL} in the database.
+    Return the short URL: https://short.ly/<alias>
+
+On redirect:
+    Decode the alias back to the ID.
+    Look up the original long URL from the database.
+    Redirect the user.
+
+🧠 Why Base-62 Encoding?
+    The ID ensures uniqueness for every new URL.
+    By encoding the numeric ID using Base-62, we generate a compact, human-readable alias — ensuring it’s both unique and short.
+
+⚠️ Limitations
+    Submitting the same long URL multiple times should not create new aliases — we should return the same one.
+    A single machine won’t scale when traffic grows to millions or billions of URLs and redirects per second.
+
+🧹 Solving Limitation #1 — Canonicalization
+Before creating a new alias, check if the long URL already exists.
+
+Concept of Canonicalization:
+You should check in a DB first if a same long URL exists already in a DB or not.
+if Exists : Return a short URL or alias already present for the same Long URL.
+
+Without canonicalization,
+each request would generate a new alias unnecessarily.
+
+| Request | Long URL                                 | Result          |
+| ------- | ---------------------------------------- | --------------- |
+| 1       | [https://google.com](https://google.com) | short.ly/abc123 |
+| 2       | [https://google.com](https://google.com) | short.ly/x9YzQ  |
+| 3       | [https://google.com](https://google.com) | short.ly/9pLrE  |
+
+With Canonicalization:
+| Request | Long URL                                 | Result          |
+| ------- | ---------------------------------------- | --------------- |
+| 1       | [https://google.com](https://google.com) | short.ly/abc123 |
+| 2       | [https://google.com](https://google.com) | short.ly/abc123 |
+| 3       | [https://google.com](https://google.com) | short.ly/abc123 |
+
+
+🧮 Pseudo Code Example
+string idToShortURL(long int n) {
+    char map[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    string shorturl;
+    while (n) {
+        shorturl.push_back(map[n % 62]);
+        n = n / 62;
+    }
+    reverse(shorturl.begin(), shorturl.end());
+    return shorturl;
+}
+
+String shortenURL(String longUrl) {
+    // Step 1: Canonicalize
+    String canonicalUrl = canonicalize(longUrl);
+
+    // Step 2: Check if URL already exists
+    Optional<String> existingAlias = findAliasByLongUrl(canonicalUrl);
+    if (existingAlias.isPresent()) {
+        return "https://short.ly/" + existingAlias.get();
+    }
+
+    // Step 3: Create new ID and alias
+    long newId = sequenceGenerator.next();
+    String alias = idToShort(newId);
+    saveMapping(newId, canonicalUrl, alias);
+
+    return "https://short.ly/" + alias;
+}
+
+⚙️ Scaling the System
+    As traffic grows, a single machine will hit its limits.
+    To scale horizontally, we can distribute data across multiple machines using consistent hashing.
+
+🧭 Distributed Architecture
+Steps:
+    Hash the long URL to find the target machine (sharding).
+    Store the mapping (short ↔ long) on that machine.
+    Include a hash prefix in the short code.
+    On redirect, parse the prefix → route to the correct machine.
+    Use consistent hashing for even load distribution.
+    Add caching + replication for performance and reliability.
+
+✅ Summary
+Step	Description
+1	    Hash the long URL to find a machine (sharding)
+2	    Store mapping (short ↔ long) on that machine
+3	    Include hash prefix in the short code
+4	    Redirect requests to the right machine
+5	    Use consistent hashing to balance load
+6	    Add caching & replication for performance
+
+💡 Takeaway:
+Start small with a simple single-node design, but always plan for scalability using distributed hashing, caching, and canonicalization to handle billions of requests efficiently.
